@@ -9,26 +9,41 @@ const regex = /^[a-zA-Z\s]*$/;
 submit.addEventListener("click" , function(event){
     event.preventDefault();
 
-    if (firstName.value === "" || regex.test(firstName.value === false)){
+    // functia test, primeste ca parametru un string, deci in cazul tau, valoarea din input
+    // si returneaza un boolean, deci tu rezultatul probabil ca doresti sa il compari cu false
+    // si nu valoarea din input, valoarea din input nu ar avea sens sa o compari cu false
+    if (firstName.value === "" || regex.test(firstName.value) === false){
+        // acest return aici, zice ca, ar trebui sa se iasa din functie
         return;
     } 
-    if (lastName.value === "" || regex.test(lastName.value === false)) {
+    // aici pui alse
+    // si pe else, pui borderul read
+
+    if (lastName.value === "" || regex.test(lastName.value) === false) {
         return;
     }
+    // aici pui alse
+    // si pe else, pui borderul read
 
+    // daca cumva se ajunge pe unul din if-uri si se face return, nu mai ajunge aici, dar banui ca asta si vrei
     displayBanner();
 })
 
+// de sters funtia
 function invalidForm() {
-    if (firstName.value === "" || regex.test(firstName.value === false)) {
+    // codul de aici - trebuie mutat mai sus 
+    if (firstName.value === "" || regex.test(firstName.value) === false) {
         firstName.style.borderColor = "red";
     }
-    if (lastName.value === "" || regex.test(lastName.value === false)) {
+    if (lastName.value === "" || regex.test(lastName.value)  === false) {
         lastName.style.borderColor = "red";
     }
 }
 
-submit.addEventListener("click" ,invalidForm , true);
+// nu inteleg de ce ai doua event listeners
+// click-ul pe buton il asculti o data si in acea funtie faci toate verificarile
+// de sters acest event listener
+submit.addEventListener("click", invalidForm, true);
 
 function validForm() {
     if (firstName.value !== "" || regex.test(firstName.value === true)){
@@ -42,6 +57,8 @@ function validForm() {
 
 }
 
+// pentru ca si la keydown vrei aceeasi validare ca si la submit, ar trebui extrasa intr-o functie 
+// logica de validare si aplicata si la click pe submit si la keydown
 firstName.addEventListener("keydown", validForm);
 lastName.addEventListener("keydown", validForm);
 
@@ -50,3 +67,6 @@ function displayBanner() {
     banner.style.visibility = "visible";
     document.getElementById("userFirstName").innerHTML = firstName.value;
 }
+
+
+// dupa ce faci imbunatatiriile sugerate mai sus - anunta-ma si revizuim :-)
