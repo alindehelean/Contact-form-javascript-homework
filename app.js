@@ -6,6 +6,7 @@ const gender = document.getElementsByClassName("gender");
 const regex = /^[a-zA-Z\s]*$/;
 
 
+
 submit.addEventListener("click" , function(event){
         event.preventDefault();
 
