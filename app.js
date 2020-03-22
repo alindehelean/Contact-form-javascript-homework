@@ -1,52 +1,44 @@
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
-const gender = document.getElementsByClassName("gender");
 const textarea = document.getElementById("comment");
 const submit = document.getElementById("submitBtn");
-const regex = /^[a-zA-Z\s]*$/; 
+const gender = document.getElementsByClassName("gender");
+const regex = /^[a-zA-Z\s]*$/;
+
+
+submit.addEventListener("click" , function(event){
+        event.preventDefault();
+
+        if(firstName.value === "" || lastName.value === "" || textarea.value === ""){
+            alert("Inputs can not be empty");
+        }
+
+        if(!regex.test(firstName.value) || !regex.test(lastName.value)){
+            alert('Input invalid!');
+            return;
+        }
 
     
-submit.addEventListener("click" , function(event){
-    event.preventDefault();
+        else if(firstName.value !== "" && lastName.value !== "" && textarea.value !== "" ) {
+            const banner = document.getElementById("banner");
+            banner.style.visibility = "visible";
+            document.getElementById("userFirstName").innerHTML = firstName.value; 
+            console.log(firstName.value);
+            console.log(lastName.value);
 
-    if (firstName.value === "" || regex.test(firstName.value === false)){
-        return;
-    } 
-    if (lastName.value === "" || regex.test(lastName.value === false)) {
-        return;
-    }
+            function display() {  
 
-    displayBanner();
-})
-
-function invalidForm() {
-    if (firstName.value === "" || regex.test(firstName.value === false)) {
-        firstName.style.borderColor = "red";
-    }
-    if (lastName.value === "" || regex.test(lastName.value === false)) {
-        lastName.style.borderColor = "red";
-    }
-}
-
-submit.addEventListener("click" ,invalidForm , true);
-
-function validForm() {
-    if (firstName.value !== "" || regex.test(firstName.value === true)){
-        firstName.style.borderColor ="unset";
-    }
-
-    if (lastName.value !== "" || regex.test(lastName.value === true)){
-        lastName.style.borderColor ="unset";
-    }
-
-
-}
-
-firstName.addEventListener("keydown", validForm);
-lastName.addEventListener("keydown", validForm);
-
-function displayBanner() {
-    const banner = document.getElementById("banner");
-    banner.style.visibility = "visible";
-    document.getElementById("userFirstName").innerHTML = firstName.value;
-}
+                if(document.getElementById('genderM').checked) { 
+                    console.log("M");
+                } 
+                else if(document.getElementById('genderF').checked) { 
+                    console.log("F");
+                }  
+                     
+            }         
+            
+        }
+        
+            display();
+            console.log(textarea.value);
+});       
